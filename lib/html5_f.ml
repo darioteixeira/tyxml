@@ -82,6 +82,9 @@ module MakeWrapped
 
   let bool_attrib = user_attrib string_of_bool
 
+  let constant_attrib a =
+    string_attrib a (W.return a)
+
   (* space-separated *)
   let length_to_string = function
     | `Pixels p -> string_of_int p
@@ -299,9 +302,8 @@ module MakeWrapped
 
   let a_for_list = space_sep_attrib "for"
 
-  let a_selected x =
-    let f = function | `Selected -> "selected"
-    in user_attrib f "selected" x
+  let a_selected =
+    constant_attrib "selected"
 
   let a_text_value = string_attrib "value"
 
@@ -323,20 +325,14 @@ module MakeWrapped
 
   let a_enctype = string_attrib "enctype"
 
-  let a_checked x =
-    let f = function
-      | `Checked -> "checked"
-    in user_attrib f "checked" x
+  let a_checked =
+    constant_attrib "checked"
 
-  let a_disabled x =
-    let f = function
-      | `Disabled -> "disabled"
-    in user_attrib f "disabled" x
+  let a_disabled =
+    constant_attrib "disabled"
 
-  let a_readonly x =
-    let f = function
-      | `ReadOnly -> "readonly"
-    in user_attrib f "readonly" x
+  let a_readonly =
+    constant_attrib "readonly"
 
   let a_maxlength = int_attrib "maxlength"
 
@@ -348,25 +344,17 @@ module MakeWrapped
       | `Off -> "off"
     in user_attrib f "autocomplete" ac
 
-  let a_async x =
-    let f = function
-      | `Async -> "async"
-    in user_attrib f "async" x
+  let a_async =
+    constant_attrib "async"
 
-  let a_autofocus x =
-    let f = function
-      | `Autofocus -> "autofocus"
-    in user_attrib f "autofocus" x
+  let a_autofocus =
+    constant_attrib "autofocus"
 
-  let a_autoplay x =
-    let f = function
-      | `Autoplay -> "autoplay"
-    in user_attrib f "autoplay" x
+  let a_autoplay =
+    constant_attrib "autoplay"
 
-  let a_muted x =
-    let f = function
-      | `Muted -> "muted"
-    in user_attrib f "muted" x
+  let a_muted =
+    constant_attrib "muted"
 
   let a_crossorigin x =
     let f = function
@@ -383,10 +371,8 @@ module MakeWrapped
 
   let a_contextmenu = string_attrib "contextmenu"
 
-  let a_controls x =
-    let f = function
-      | `Controls -> "controls"
-    in user_attrib f "controls" x
+  let a_controls =
+    constant_attrib "controls"
 
   let a_dir d =
     let f = function
@@ -411,35 +397,27 @@ module MakeWrapped
       | `Delete -> "DELETE"
     in user_attrib f "method" m
 
-  let a_formnovalidate x =
-    let f = function
-      | `Formnovalidate -> "formnovalidate"
-    in user_attrib f "formnovalidate" x
+  let a_formnovalidate =
+    constant_attrib "formnovalidate"
 
   let a_formtarget = string_attrib "formtarget"
 
-  let a_hidden x =
-    let f = function
-      | `Hidden -> "hidden"
-    in user_attrib f "hidden" x
+  let a_hidden =
+    constant_attrib "hidden"
 
   let a_high = float_attrib "high"
 
   let a_icon = uri_attrib "icon"
 
-  let a_ismap x =
-    let f = function
-      | `Ismap -> "ismap"
-    in user_attrib f "ismap" x
+  let a_ismap =
+    constant_attrib "ismap"
 
   let a_keytype = string_attrib "keytype"
 
   let a_list = string_attrib "list"
 
-  let a_loop x =
-    let f = function
-      | `Loop -> "loop"
-    in user_attrib f "loop" x
+  let a_loop =
+    constant_attrib "loop"
 
   let a_low = float_attrib "low"
 
@@ -451,15 +429,11 @@ module MakeWrapped
 
   let a_input_min = float_attrib "min"
 
-  let a_novalidate x =
-    let f = function
-      | `Novalidate -> "novalidate"
-    in user_attrib f "novalidate" x
+  let a_novalidate =
+    constant_attrib "novalidate"
 
-  let a_open x =
-    let f = function
-      | `Open -> "open"
-    in user_attrib f "open" x
+  let a_open =
+    constant_attrib "open"
 
   let a_optimum = float_attrib "optimum"
 
@@ -476,22 +450,16 @@ module MakeWrapped
       | `Audio -> "audio"
     in user_attrib f "preload" pl
 
-  let a_pubdate x =
-    let f = function
-      | `Pubdate -> "pubdate"
-    in user_attrib f "pubdate" x
+  let a_pubdate =
+    constant_attrib "pubdate"
 
   let a_radiogroup = string_attrib "radiogroup"
 
-  let a_required x =
-    let f = function
-      | `Required -> "required"
-    in user_attrib f "required" x
+  let a_required =
+    constant_attrib "required"
 
-  let a_reversed x =
-    let f = function
-      | `Reversed -> "reserved"
-    in user_attrib f "reserved" x
+  let a_reversed =
+    constant_attrib "reserved"
 
   let a_sandbox sb =
     let rec aux sb =
@@ -505,15 +473,11 @@ module MakeWrapped
   let a_spellcheck sc =
     bool_attrib "spellckeck" sc
 
-  let a_scoped x =
-    let f = function
-      | `Scoped -> "scoped"
-    in user_attrib f "scoped" x
+  let a_scoped =
+    constant_attrib "scoped"
 
-  let a_seamless x =
-    let f = function
-      | `Seamless -> "seamless"
-    in user_attrib f "seamless" x
+  let a_seamless =
+    constant_attrib "seamless"
 
   let a_sizes sizes =
     let f sizes = String.concat " " (List.map string_of_int sizes)
@@ -587,10 +551,8 @@ module MakeWrapped
       | `Reset -> "reset"
     in user_attrib f "type" bt
 
-  let a_multiple x =
-    let f = function
-      | `Multiple -> "multiple"
-    in user_attrib f "multiple" x
+  let a_multiple =
+    constant_attrib "multiple"
 
   let a_cols = int_attrib "cols"
 
@@ -841,8 +803,8 @@ module MakeWrapped
 
   let a_usemap = string_attrib "usemap"
 
-  let a_defer x =
-    let f = function | `Defer -> "defer" in user_attrib f "defer" x
+  let a_defer =
+    constant_attrib "defer"
 
   let a_label = string_attrib "label"
 
