@@ -340,8 +340,8 @@ module MakeWrapped
 
   let a_autocomplete ac =
     let f = function
-      | `On -> "on"
-      | `Off -> "off"
+      | true -> "on"
+      | false -> "off"
     in user_attrib f "autocomplete" ac
 
   let a_async =

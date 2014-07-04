@@ -46,7 +46,7 @@ module type T = sig
       NB: It might be possible to use polymorphic variants directly, without
       phantom types, but the implementation is likely to be more involved. *)
 
-  val a_autocomplete : [< | `On | `Off] wrap -> [> | `Autocomplete] attrib
+  val a_autocomplete : bool wrap -> [> | `Autocomplete] attrib
 
   val a_async : [> | `Async] attrib
 
