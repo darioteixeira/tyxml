@@ -20,8 +20,10 @@
 
 module type Wrapped = sig
 
-  type 'a wrap
-  type 'a list_wrap
+  module W : Xml_wrap.T
+
+  type 'a wrap = 'a W.t
+  type 'a list_wrap = 'a W.tlist
 
   type uri
   val string_of_uri : uri -> string
@@ -64,11 +66,12 @@ module type Wrapped = sig
 
 end
 
-module type T = Wrapped with type 'a wrap = 'a
-                         and type 'a list_wrap = 'a list
-module type Iterable = sig
+module type T = Wrapped
+  with module W = Xml_wrap.NoWrap
 
-  include T
+module type WrappedIterable = sig
+
+  include Wrapped
 
   type separator = Space | Comma
 
@@ -93,6 +96,8 @@ module type Iterable = sig
 
 end
 
+module type Iterable = WrappedIterable with module W = Xml_wrap.NoWrap
+
 module type Info = sig
   val content_type: string
   val alternative_content_types: string list
@@ -114,7 +119,7 @@ end
 
 module type Typed_xml = sig
 
-  module Xml : T
+  module Xml : Wrapped
   module Info : Info
 
   type 'a elt

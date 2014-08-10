@@ -871,16 +871,12 @@ module type T = sig
 
 end
 
-(** {2 Signature functors} *)
-(** See {% <<a_manual chapter="functors"|the manual of the functorial interface>> %}. *)
-
-(** Signature functor for {!Svg_f.MakeWrapped}. *)
-module MakeWrapped
-    (W : Xml_wrap.T)
+(** Signature functor for {!Svg_f.Make}.
+    See {% <<a_manual chapter="functors"|the manual of the functorial interface>> %}.
+*)
+module Make
     (Xml : Xml_sigs.Wrapped) :
 sig
-
-  (** See {!modtype:Svg_sigs.T}. *)
   module type T = T
     with type Xml.uri = Xml.uri
      and type Xml.event_handler = Xml.event_handler
@@ -888,16 +884,6 @@ sig
      and type Xml.keyboard_event_handler = Xml.keyboard_event_handler
      and type Xml.attrib = Xml.attrib
      and type Xml.elt = Xml.elt
-     and type 'a Xml.wrap = 'a W.t
-     and type 'a wrap = 'a W.t
-     and type 'a Xml.list_wrap = 'a W.tlist
-     and type 'a list_wrap = 'a W.tlist
-end
-
-(** Signature functor for {!Svg_f.Make}. *)
-module Make(Xml : Xml_sigs.T) :
-sig
-
-  (** See {!modtype:Svg_sigs.MakeWrapped} and {!modtype:Svg_sigs.T}. *)
-  module type T = MakeWrapped(Xml_wrap.NoWrap)(Xml).T
+     and type 'a wrap = 'a Xml.wrap
+     and type 'a list_wrap = 'a Xml.list_wrap
 end

@@ -1176,17 +1176,13 @@ module type T = sig
 
 end
 
-(** {2 Signature functors} *)
-(** See {% <<a_manual chapter="functors"|the manual of the functorial interface>> %}. *)
-
-(** Signature functor for {!Html5_f.MakeWrapped}. *)
-module MakeWrapped
-    (W : Xml_wrap.T)
+(** Signature functor for {!Html5_f.Make}.
+    See {% <<a_manual chapter="functors"|the manual of the functorial interface>> %}.
+*)
+module Make
     (Xml : Xml_sigs.Wrapped)
     (Svg : Svg_sigs.T with module Xml := Xml) :
 sig
-
-  (** See {!modtype:Html5_sigs.T}. *)
   module type T = T
     with type Xml.uri = Xml.uri
      and type Xml.event_handler = Xml.event_handler
@@ -1195,18 +1191,6 @@ sig
      and type Xml.attrib = Xml.attrib
      and type Xml.elt = Xml.elt
      and module Svg := Svg
-     and type 'a Xml.wrap = 'a W.t
-     and type 'a wrap = 'a W.t
-     and type 'a Xml.list_wrap = 'a W.tlist
-     and type 'a list_wrap = 'a W.tlist
-end
-
-(** Signature functor for {!Html5_f.Make}. *)
-module Make
-    (Xml : Xml_sigs.T)
-    (Svg : Svg_sigs.T with module Xml := Xml) :
-sig
-
-  (** See {!modtype:Html5_sigs.MakeWrapped} and {!modtype:Html5_sigs.T}. *)
-  module type T = MakeWrapped(Xml_wrap.NoWrap)(Xml)(Svg).T
+     and type 'a wrap = 'a Xml.wrap
+     and type 'a list_wrap = 'a Xml.list_wrap
 end

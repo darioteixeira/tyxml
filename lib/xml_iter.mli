@@ -20,7 +20,7 @@
 
 (** Basic iterators over XML tree (functorial interface). *)
 
-module Make(Xml : Xml_sigs.Iterable) : sig
+module Make(Xml : Xml_sigs.Iterable with module W = Xml_wrap.NoWrap) : sig
 
   open Xml
 

@@ -21,6 +21,8 @@
 
 (** Basic functions for construction and manipulation of XML tree. *)
 
+module W : Xml_wrap.T with type 'a t = 'a and type 'a tlist = 'a list
+
 type 'a wrap = 'a
 type 'a list_wrap = 'a list
 type uri = string
