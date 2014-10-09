@@ -23,7 +23,7 @@
 
 module Make
     (Xml : Xml_sigs.T)
-    (Svg : Svg_sigs.T with module Xml := Xml)
+    (Svg : Svg_sigs.T with module W = Xml_wrap.NoWrap and module Xml := Xml)
   : Html5_sigs.Make(Xml)(Svg).T
     with type +'a elt = Xml.elt
      and type +'a attrib = Xml.attrib
@@ -35,7 +35,7 @@ module MakeWrapped
     (W : Xml_wrap.T)
     (Xml : Xml_sigs.Wrapped with type 'a wrap = 'a W.t
                              and type 'a list_wrap = 'a W.tlist)
-    (Svg : Svg_sigs.T with module Xml := Xml)
+    (Svg : Svg_sigs.T with module W = W and module Xml := Xml)
   : Html5_sigs.MakeWrapped(W)(Xml)(Svg).T
     with type +'a elt = Xml.elt
      and type +'a attrib = Xml.attrib
