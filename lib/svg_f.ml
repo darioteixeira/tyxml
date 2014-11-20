@@ -756,17 +756,17 @@ struct
 
   let a_k = string_attrib "k"
 
-  let a_fontfamily = string_attrib "font-family"
+  let a_font_family = string_attrib "font-family"
 
-  let a_fontstyle = string_attrib "font-style"
+  let a_font_style = string_attrib "font-style"
 
-  let a_fontvariant = string_attrib "font-variant"
+  let a_font_variant = string_attrib "font-variant"
 
-  let a_fontweight = string_attrib "font-weight"
+  let a_font_weight = string_attrib "font-weight"
 
-  let a_fontstretch = string_attrib "font-stretch"
+  let a_font_stretch = string_attrib "font-stretch"
 
-  let a_fontsize = string_attrib "font-size"
+  let a_font_size = string_attrib "font-size"
 
   let a_unicoderange = string_attrib "unicode-range"
 
@@ -1043,15 +1043,15 @@ struct
 
   let vkern = nullary "vkern"
 
-  let fontface = nullary "fontFace"
+  let font_face = nullary "font-face"
 
-  let fontfacesrc = star "font-face-src"
+  let font_face_src = star "font-face-src"
 
-  let fontfaceuri = star "font-face-uri"
+  let font_face_uri = star "font-face-uri"
 
-  let fontfaceformat = nullary "font-face-uri"
+  let font_face_format = nullary "font-face-uri"
 
-  let fontfacename = nullary "font-face-name"
+  let font_face_name = nullary "font-face-name"
 
   type doc = [ `Svg ] elt
   let doc_toelt x = x

@@ -455,17 +455,17 @@ module type T = sig
 
   val a_k : string wrap -> [> | `K ] attrib
 
-  val a_fontfamily : string wrap -> [> | `Font_Family ] attrib
+  val a_font_family : string wrap -> [> | `Font_Family ] attrib
 
-  val a_fontstyle : string wrap -> [> | `Font_Style ] attrib
+  val a_font_style : string wrap -> [> | `Font_Style ] attrib
 
-  val a_fontvariant : string wrap -> [> | `Font_Variant ] attrib
+  val a_font_variant : string wrap -> [> | `Font_Variant ] attrib
 
-  val a_fontweight : string wrap -> [> | `Font_Weight ] attrib
+  val a_font_weight : string wrap -> [> | `Font_Weight ] attrib
 
-  val a_fontstretch : string wrap -> [> | `Font_Stretch ] attrib
+  val a_font_stretch : string wrap -> [> | `Font_Stretch ] attrib
 
-  val a_fontsize : string wrap -> [> | `Font_Size ] attrib
+  val a_font_size : string wrap -> [> | `Font_Size ] attrib
 
   val a_unicoderange : string wrap -> [> | `UnicodeRange ] attrib
 
@@ -788,20 +788,20 @@ module type T = sig
 
   val vkern : ([< | vkern_attr], [> | vkern]) nullary
 
-  val fontface : ([< | fontface_attr], [> | fontface]) nullary
+  val font_face : ([< | font_face_attr], [> | font_face]) nullary
 
-  val fontfacesrc :
-    ([< | fontfacesrc_attr], [< | fontfacesrc_content], [> | fontfacesrc])
+  val font_face_src :
+    ([< | font_face_src_attr], [< | font_face_src_content], [> | font_face_src])
       star
 
-  val fontfaceuri :
-    ([< | fontfaceuri_attr], [< | fontfaceuri_content], [> | fontfaceuri])
+  val font_face_uri :
+    ([< | font_face_uri_attr], [< | font_face_uri_content], [> | font_face_uri])
       star
 
-  val fontfaceformat :
-    ([< | fontfaceformat_attr], [> | fontfaceformat]) nullary
+  val font_face_format :
+    ([< | font_face_format_attr], [> | font_face_format]) nullary
 
-  val fontfacename : ([< | fontfacename_attr], [> | fontfacename]) nullary
+  val font_face_name : ([< | font_face_name_attr], [> | font_face_name]) nullary
 
   val tot : Xml.elt -> 'a elt
 
